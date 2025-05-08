@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Your Digital Game Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #1a1e2b;
+            color: #c6d4df;
+        }
+
+        a {
+            text-decoration: none;
+            color: #b8b6b4;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background-color: #121620;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li {
+            margin: 0 15px;
+        }
+
+        .main-nav a {
+            color: #e9e9e9;
+            font-weight: bold;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: #ffffff;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        #install-app {
+            background-color: #6e3bdb;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            margin-right: 15px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        #install-app:hover {
+            background-color: #7d4ae0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .login, .language {
+            margin: 0 10px;
+            font-size: 12px;
+            transition: color 0.3s;
+        }
+
+        .login:hover, .language:hover {
+            color: #6e3bdb;
+        }
+
+        .secondary-nav {
+            background-color: #2a3f5a;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .secondary-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .secondary-nav li {
+            margin: 0 15px;
+        }
+
+        .secondary-nav a {
+            color: #e9e9e9;
+            font-size: 13px;
+            transition: color 0.3s;
+        }
+
+        .secondary-nav a:hover {
+            color: #6e3bdb;
+        }
+
+        .search-box {
+            display: flex;
+        }
+
+        .search-box input {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px 0 0 3px;
+            width: 200px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #6e3bdb;
+        }
+
+        .search-box button {
+            background-color: #316282;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 0 3px 3px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background-color: #6e3bdb;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://via.placeholder.com/1920x600/1a1e2b/6e3bdb?text=GameVault');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button {
+            background-color: #6e3bdb;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #7d4ae0;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Featured Section */
+        .featured {
+            padding: 40px 50px;
+        }
+
+        .featured h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .game-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #6e3bdb #2a3f5a;
+        }
+
+        .game-carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .game-carousel::-webkit-scrollbar-track {
+            background: #2a3f5a;
+            border-radius: 10px;
+        }
+
+        .game-carousel::-webkit-scrollbar-thumb {
+            background-color: #6e3bdb;
+            border-radius: 10px;
+        }
+
+        .game-card {
+            min-width: 250px;
+            background-color: #2a3f5a;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .game-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .game-info {
+            padding: 15px;
+        }
+
+        .game-title {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .game-price {
+            color: #acdbf5;
+            font-weight: bold;
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .wishlist-btn, .cart-btn {
+            background: #316282;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+        }
+
+        .wishlist-btn:hover {
+            background: #d32f2f;
+        }
+
+        .cart-btn:hover {
+            background: #6e3bdb;
+        }
+
+        .exclusive-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #6e3bdb;
+            color: white;
+            padding: 3px 6px;
+            font-size: 10px;
+            border-radius: 3px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Special Offers */
+        .special-offers {
+            padding: 40px 50px;
+        }
+
+        .special-offers h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .offer-card {
+            background-color: #2a3f5a;
+            border-radius: 5px;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .offer-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .offer-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .offer-info {
+            padding: 15px;
+        }
+
+        .offer-info h3 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .offer-btn {
+            background: #6e3bdb;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .offer-btn:hover {
+            background: #7d4ae0;
+            transform: translateY(-2px);
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 40px 50px;
+        }
+
+        .categories h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background-color: #2a3f5a;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            background-color: #316282;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-card i {
+            font-size: 40px;
+            color: #8a6bdb;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover i {
+            color: #6e3bdb;
+            transform: scale(1.1);
+        }
+
+        .category-card h3 {
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #171a21;
+            padding: 30px 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .footer-links li {
+            margin: 0 15px 10px 0;
+        }
+
+        .footer-links a {
+            font-size: 12px;
+            color: #8f98a0;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #6e3bdb;
+        }
+
+        .social-media a {
+            color: #8f98a0;
+            margin: 0 10px;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+
+        .social-media a:hover {
+            color: #6e3bdb;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 12px;
+            color: #8f98a0;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #1a1e2b;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: #8f98a0;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #6e3bdb;
+        }
+
+        /* Login Form */
+        .login-form h3 {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #b8b6b4;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #2a3f5a;
+            background-color: #2a3f5a;
+            color: white;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6e3bdb;
+        }
+
+        .form-submit {
+            background: #6e3bdb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .form-submit:hover {
+            background: #7d4ae0;
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6e3bdb;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .top-bar, .secondary-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+           
+            .main-nav ul, .secondary-nav ul {
+                flex-wrap: wrap;
+                margin: 10px 0;
+            }
+           
+            .hero {
+                height: 300px;
+                padding: 0 20px;
+                text-align: center;
+            }
+           
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .offers-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="logo">
+                <img src="https://via.placeholder.com/150x50?text=GameVault" alt="GameVault Logo">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">STORE</a></li>
+                    <li><a href="#">COMMUNITY</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">SUPPORT</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <button id="install-app">Install GameVault</button>
+                <a href="#" class="login" id="login-btn">login</a>
+                <a href="#" class="language">language</a>
+            </div>
+        </div>
+        <div class="secondary-nav">
+            <ul>
+                <li><a href="#">Your Vault</a></li>
+                <li><a href="#">New & Noteworthy</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Rewards</a></li>
+                <li><a href="#">News</a></li>
+                <li><a href="#">Beta</a></li>
+            </ul>
+            <div class="search-box">
+                <input type="text" placeholder="search" id="search-input">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your Ultimate Game Collection</h1>
+                <p>Discover, organize, and play your favorite games</p>
+                <button class="cta-button" id="browse-btn">Browse the Vault</button>
+            </div>
+        </section>
+
+        <section class="featured">
+            <h2>Featured & Recommended</h2>
+            <div class="game-carousel" id="gameCarousel">
+                <!-- Games will be loaded here via JavaScript -->
+            </div>
+        </section>
+
+        <section class="special-offers">
+            <h2>Special Offers</h2>
+            <div class="offers-grid" id="offersGrid">
+                <!-- Offers will be loaded here via JavaScript -->
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2>Browse by Category</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="action">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Action</h3>
+                </div>
+                <div class="category-card" data-category="rpg">
+                    <i class="fas fa-hat-wizard"></i>
+                    <h3>RPG</h3>
+                </div>
+                <div class="category-card" data-category="horror">
+                    <i class="fas fa-ghost"></i>
+                    <h3>Horror</h3>
+                </div>
+                <div class="category-card" data-category="strategy">
+                    <i class="fas fa-chess"></i>
+                    <h3>Strategy</h3>
+                </div>
+                <div class="category-card" data-category="racing">
+                    <i class="fas fa-car"></i>
+                    <h3>Racing</h3>
+                </div>
+                <div class="category-card" data-category="sports">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Sports</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://via.placeholder.com/150x50?text=GameVault" alt="GameVault Logo">
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Legal</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Refunds</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+            <div class="social-media">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 GameVault Corporation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <div class="login-form">
+                <h3>Login to GameVault</h3>
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password">
+                </div>
+                <button class="form-submit" id="login-submit">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notification-message">Item added to your cart!</span>
+    </div>
+
+    <script>
+        // JavaScript with Enhanced Button Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const installBtn = document.getElementById('install-app');
+            const loginBtn = document.getElementById('login-btn');
+            const browseBtn = document.getElementById('browse-btn');
+            const searchBtn = document.getElementById('search-btn');
+            const searchInput = document.getElementById('search-input');
+            const loginModal = document.getElementById('login-modal');
+            const closeModal = document.getElementById('close-modal');
+            const loginSubmit = document.getElementById('login-submit');
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            const categoryCards = document.querySelectorAll('.category-card');
+
+            // Sample game data
+            const featuredGames = [
+                {
+                    id: 1,
+                    title: "Cyberpunk 2077",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
+                    price: "$59.99",
+                    discountPrice: "$39.99",
+                    vaultExclusive: true,
+                    category: "action"
+                },
+                {
+                    id: 2,
+                    title: "Elden Ring",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg",
+                    price: "$59.99",
+                    discountPrice: "$49.99",
+                    vaultExclusive: false,
+                    category: "rpg"
+                },
+                {
+                    id: 3,
+                    title: "Stardew Valley",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg",
+                    price: "$14.99",
+                    discountPrice: null,
+                    vaultExclusive: true,
+                    category: "rpg"
+                },
+                {
+                    id: 4,
+                    title: "Apex Legends",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg",
+                    price: "Free",
+                    discountPrice: null,
+                    vaultExclusive: false,
+                    category: "action"
+                },
+                {
+                    id: 5,
+                    title: "Baldur's Gate 3",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg",
+                    price: "$59.99",
+                    discountPrice: null,
+                    vaultExclusive: true,
+                    category: "rpg"
+                },
+                {
+                    id: 6,
+                    title: "Hades",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg",
+                    price: "$24.99",
+                    discountPrice: "$19.99",
+                    vaultExclusive: false,
+                    category: "action"
+                }
+            ];
+
+            const specialOffers = [
+                {
+                    title: "Vault Sale",
+                    discount: "Up to 75% off",
+                    image: "https://via.placeholder.com/586x192/2a3f5a/8a6bdb?text=Vault+Sale",
+                    code: "VAULT75"
+                },
+                {
+                    title: "Weekend Deal",
+                    discount: "50% off selected titles",
+                    image: "https://via.placeholder.com/586x192/2a3f5a/8a6bdb?text=Weekend+Deal",
+                    code: "WEEKEND50"
+                },
+                {
+                    title: "New in Vault",
+                    discount: "Discover the latest games",
+                    image: "https://via.placeholder.com/586x192/2a3f5a/8a6bdb?text=New+Releases",
+                    code: "NEWVAULT"
+                }
+            ];
+
+            // Shopping cart
+            let cart = [];
+
+            // Load featured games
+            const gameCarousel = document.getElementById('gameCarousel');
+           
+            featuredGames.forEach(game => {
+                const gameCard = document.createElement('div');
+                gameCard.className = 'game-card';
+                gameCard.dataset.id = game.id;
+                gameCard.dataset.category = game.category;
+               
+                let exclusiveBadge = '';
+                if (game.vaultExclusive) {
+                    exclusiveBadge = '<span class="exclusive-badge">Vault Exclusive</span>';
+                }
+
+                let priceDisplay = game.discountPrice 
+                    ? `<span style="text-decoration: line-through; color: #b6b6b6; margin-right: 5px;">${game.price}</span> ${game.discountPrice}`
+                    : game.price;
+               
+                gameCard.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}">
+                    ${exclusiveBadge}
+                    <div class="game-info">
+                        <h3 class="game-title">${game.title}</h3>
+                        <p class="game-price">${priceDisplay}</p>
+                        <div class="game-actions">
+                            <button class="wishlist-btn" data-id="${game.id}"><i class="far fa-heart"></i> Wishlist</button>
+                            <button class="cart-btn" data-id="${game.id}"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+                gameCarousel.appendChild(gameCard);
+            });
+
+            // Load special offers
+            const offersGrid = document.getElementById('offersGrid');
+           
+            specialOffers.forEach(offer => {
+                const offerCard = document.createElement('div');
+                offerCard.className = 'offer-card';
+                offerCard.innerHTML = `
+                    <img src="${offer.image}" alt="${offer.title}">
+                    <div class="offer-info">
+                        <h3>${offer.title}</h3>
+                        <p>${offer.discount}</p>
+                        <button class="offer-btn" data-code="${offer.code}">Get Deal</button>
+                    </div>
+                `;
+                offersGrid.appendChild(offerCard);
+            });
+
+            // Button Event Listeners
+            installBtn.addEventListener('click', function() {
+                showNotification('Downloading GameVault installer...');
+                // Simulate download
+                setTimeout(() => {
+                    showNotification('GameVault installer ready!');
+                }, 2000);
+            });
+
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.style.display = 'flex';
+            });
+
+            closeModal.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+            });
+
+            loginSubmit.addEventListener('click', function() {
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                if (email && password) {
+                    showNotification('Login successful!');
+                    setTimeout(() => {
+                        loginModal.style.display = 'none';
+                        loginBtn.textContent = 'My Account';
+                    }, 1500);
+                } else {
+                    showNotification('Please fill in all fields', 'error');
+                }
+            });
+
+            browseBtn.addEventListener('click', function() {
+                showNotification('Loading game collection...');
+                // Simulate loading
+                setTimeout(() => {
+                    window.scrollTo({
+                        top: document.querySelector('.featured').offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }, 500);
+            });
+
+            searchBtn.addEventListener('click', function() {
+                performSearch();
+            });
+
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // Category cards
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.dataset.category;
+                    showNotification(`Filtering ${category} games...`);
+                    // In a real app, you would filter games here
+                });
+            });
+
+            // Game actions (delegated events)
+            document.addEventListener('click', function(e) {
+                // Wishlist button
+                if (e.target.classList.contains('wishlist-btn') || e.target.closest('.wishlist-btn')) {
+                    const btn = e.target.classList.contains('wishlist-btn') ? e.target : e.target.closest('.wishlist-btn');
+                    const gameId = btn.dataset.id;
+                    const game = featuredGames.find(g => g.id == gameId);
+                    showNotification(`${game.title} added to your wishlist!`);
+                }
+                
+                // Add to cart button
+                if (e.target.classList.contains('cart-btn') || e.target.closest('.cart-btn')) {
+                    const btn = e.target.classList.contains('cart-btn') ? e.target : e.target.closest('.cart-btn');
+                    const gameId = btn.dataset.id;
+                    const game = featuredGames.find(g => g.id == gameId);
+                    cart.push(game);
+                    showNotification(`${game.title} added to your cart!`);
+                }
+                
+                // Offer button
+                if (e.target.classList.contains('offer-btn') || e.target.closest('.offer-btn')) {
+                    const btn = e.target.classList.contains('offer-btn') ? e.target : e.target.closest('.offer-btn');
+                    const code = btn.dataset.code;
+                    showNotification(`Discount code copied: ${code}`);
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(code);
+                }
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === loginModal) {
+                    loginModal.style.display = 'none';
+                }
+            });
+
+            // Helper functions
+            function performSearch() {
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    showNotification(`Searching for: ${query}`);
+                    // In a real app, you would perform search here
+                } else {
+                    showNotification('Please enter a search term', 'error');
+                }
+            }
+
+            function showNotification(message, type = 'success') {
+                notificationMessage.textContent = message;
+                notification.className = 'notification';
+                if (type === 'error') {
+                    notification.style.background = '#d32f2f';
+                } else {
+                    notification.style.background = '#6e3bdb';
+                }
+                
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 10);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
