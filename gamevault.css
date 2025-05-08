@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameVault - Your Digital Game Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0F0F0F;
+            color: #FFFFFF;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0F0F0F;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2A2A2A;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #6C5DD3 0%, #A162F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #B6B6B6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #FFFFFF;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: #1F1F1F;
+            border-radius: 10px;
+            padding: 8px 15px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            width: 200px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: #B6B6B6;
+            cursor: pointer;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login-btn {
+            background: transparent;
+            border: 1px solid #3A3A3A;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #1F1F1F;
+        }
+
+        .signup-btn {
+            background: linear-gradient(90deg, #6C5DD3 0%, #A162F7 100%);
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .signup-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Cart Indicator */
+        .cart-indicator {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #FF4D4D;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            padding: 60px 40px;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #B6B6B6;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-btn {
+            background: linear-gradient(90deg, #6C5DD3 0%, #A162F7 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .primary-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .secondary-btn {
+            background: #1F1F1F;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .secondary-btn:hover {
+            background: #2A2A2A;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-badge i {
+            color: #6C5DD3;
+        }
+
+        /* Featured Games */
+        .featured-games {
+            padding: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .section-header h3 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .view-all {
+            color: #6C5DD3;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .game-card {
+            background: #1F1F1F;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-image {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.05);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(90deg, #6C5DD3 0%, #A162F7 100%);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .game-info {
+            padding: 20px;
+        }
+
+        .game-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .game-category {
+            color: #B6B6B6;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .game-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-price {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .discount-price {
+            color: #B6B6B6;
+            text-decoration: line-through;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .add-to-cart {
+            background: #2A2A2A;
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #6C5DD3;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 40px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: #1F1F1F;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(135deg, #6C5DD3 0%, #A162F7 100%);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: #2A2A2A;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover .category-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .category-icon i {
+            font-size: 24px;
+            color: #6C5DD3;
+        }
+
+        .category-card:hover .category-icon i {
+            color: white;
+        }
+
+        .category-name {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .category-count {
+            color: #B6B6B6;
+            font-size: 14px;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover .category-count {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, #6C5DD3 0%, #A162F7 100%);
+            border-radius: 20px;
+            margin: 40px;
+            padding: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .newsletter-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .newsletter-content p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            width: 300px;
+            outline: none;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form button {
+            background: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0A0A0A;
+            padding: 60px 40px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #B6B6B6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #1F1F1F;
+            border-radius: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #6C5DD3;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2A2A2A;
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright {
+            color: #B6B6B6;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #1F1F1F;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            color: #B6B6B6;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: #6C5DD3;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* Cart Modal */
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #2A2A2A;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: #6C5DD3;
+            font-weight: 700;
+        }
+
+        .remove-item {
+            background: transparent;
+            border: none;
+            color: #B6B6B6;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .remove-item:hover {
+            color: #FF4D4D;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .cart-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .cart-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .continue-shopping {
+            background: #2A2A2A;
+            border: none;
+            color: white;
+        }
+
+        .checkout {
+            background: linear-gradient(90deg, #6C5DD3 0%, #A162F7 100%);
+            border: none;
+            color: white;
+        }
+
+        .cart-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6C5DD3;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification.error {
+            background: #FF4D4D;
+        }
+
+        .notification.success {
+            background: #4CAF50;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+            }
+            
+            .hero-content, .hero-image {
+                width: 100%;
+            }
+            
+            .newsletter {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            
+            .newsletter-form {
+                width: 100%;
+            }
+            
+            .newsletter-form input {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .user-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-content h2 {
+                font-size: 36px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 28px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form button {
+                padding: 15px;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .login-btn, .signup-btn {
+                width: 100%;
+            }
+
+            .cart-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://via.placeholder.com/40x40/6C5DD3/FFFFFF?text=GV" alt="GameVault Logo">
+            <h1>GameVault</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Store</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Search games..." id="search-input">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="cart-indicator" id="cart-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+            <div class="auth-buttons">
+                <button class="login-btn" id="login-btn">Login</button>
+                <button class="signup-btn" id="signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Build Your Ultimate Game Collection</h2>
+            <p>Discover, organize, and play your favorite games all in one place. Join millions of gamers in the ultimate gaming platform.</p>
+            <div class="hero-buttons">
+                <button class="primary-btn" id="explore-btn">Explore Games</button>
+                <button class="secondary-btn" id="learn-more-btn">Learn More</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/600x400/1F1F1F/6C5DD3?text=Featured+Game" alt="Featured Game">
+            <div class="hero-badge">
+                <i class="fas fa-crown"></i>
+                <span>Game of the Month</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-games">
+        <div class="section-header">
+            <h3>Popular Games</h3>
+            <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="games-grid" id="games-grid">
+            <!-- Games will be loaded here via JavaScript -->
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="section-header">
+            <h3>Browse Categories</h3>
+            <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="categories-grid">
+            <div class="category-card" data-category="action">
+                <div class="category-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h4 class="category-name">Action</h4>
+                <p class="category-count">1,240 Games</p>
+            </div>
+            <div class="category-card" data-category="rpg">
+                <div class="category-icon">
+                    <i class="fas fa-hat-wizard"></i>
+                </div>
+                <h4 class="category-name">RPG</h4>
+                <p class="category-count">856 Games</p>
+            </div>
+            <div class="category-card" data-category="horror">
+                <div class="category-icon">
+                    <i class="fas fa-ghost"></i>
+                </div>
+                <h4 class="category-name">Horror</h4>
+                <p class="category-count">420 Games</p>
+            </div>
+            <div class="category-card" data-category="strategy">
+                <div class="category-icon">
+                    <i class="fas fa-chess"></i>
+                </div>
+                <h4 class="category-name">Strategy</h4>
+                <p class="category-count">732 Games</p>
+            </div>
+            <div class="category-card" data-category="racing">
+                <div class="category-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <h4 class="category-name">Racing</h4>
+                <p class="category-count">315 Games</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="newsletter-content">
+            <h3>Stay Updated</h3>
+            <p>Subscribe to our newsletter to get the latest game releases, updates, and exclusive offers.</p>
+        </div>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Your email address" id="newsletter-email">
+            <button id="subscribe-btn">Subscribe</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>GameVault</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Refunds</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">GDPR</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">© 2023 GameVault. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Cookies</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-login-modal">&times;</span>
+            <h3 class="modal-title">Login to GameVault</h3>
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter your password">
+            </div>
+            <button class="form-submit" id="login-submit">Login</button>
+            <p style="text-align: center; margin-top: 15px; color: #B6B6B6;">
+                Don't have an account? <a href="#" style="color: #6C5DD3;" id="switch-to-signup">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-signup-modal">&times;</span>
+            <h3 class="modal-title">Create an Account</h3>
+            <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" placeholder="Choose a username">
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Create a password">
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm-password">Confirm Password</label>
+                <input type="password" id="signup-confirm-password" placeholder="Confirm your password">
+            </div>
+            <button class="form-submit" id="signup-submit">Sign Up</button>
+            <p style="text-align: center; margin-top: 15px; color: #B6B6B6;">
+                Already have an account? <a href="#" style="color: #6C5DD3;" id="switch-to-login">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-cart-modal">&times;</span>
+            <h3 class="modal-title">Your Cart</h3>
+            <div class="cart-items" id="cart-items">
+                <!-- Cart items will be loaded here -->
+                <p id="empty-cart-message">Your cart is empty</p>
+            </div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-amount">$0.00</span>
+            </div>
+            <div class="cart-actions">
+                <button class="cart-btn continue-shopping" id="continue-shopping-btn">Continue Shopping</button>
+                <button class="cart-btn checkout" id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle" id="notification-icon"></i>
+        <span id="notification-message">Notification message</span>
+    </div>
+
+    <script>
+        // GameVault Application
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const elements = {
+                // Buttons
+                loginBtn: document.getElementById('login-btn'),
+                signupBtn: document.getElementById('signup-btn'),
+                exploreBtn: document.getElementById('explore-btn'),
+                learnMoreBtn: document.getElementById('learn-more-btn'),
+                searchBtn: document.getElementById('search-btn'),
+                cartBtn: document.getElementById('cart-btn'),
+                subscribeBtn: document.getElementById('subscribe-btn'),
+                loginSubmit: document.getElementById('login-submit'),
+                signupSubmit: document.getElementById('signup-submit'),
+                continueShoppingBtn: document.getElementById('continue-shopping-btn'),
+                checkoutBtn: document.getElementById('checkout-btn'),
+                switchToSignup: document.getElementById('switch-to-signup'),
+                switchToLogin: document.getElementById('switch-to-login'),
+                
+                // Inputs
+                searchInput: document.getElementById('search-input'),
+                loginEmail: document.getElementById('login-email'),
+                loginPassword: document.getElementById('login-password'),
+                signupUsername: document.getElementById('signup-username'),
+                signupEmail: document.getElementById('signup-email'),
+                signupPassword: document.getElementById('signup-password'),
+                signupConfirmPassword: document.getElementById('signup-confirm-password'),
+                newsletterEmail: document.getElementById('newsletter-email'),
+                
+                // Modals
+                loginModal: document.getElementById('login-modal'),
+                signupModal: document.getElementById('signup-modal'),
+                cartModal: document.getElementById('cart-modal'),
+                closeLoginModal: document.getElementById('close-login-modal'),
+                closeSignupModal: document.getElementById('close-signup-modal'),
+                closeCartModal: document.getElementById('close-cart-modal'),
+                
+                // Cart
+                cartCount: document.getElementById('cart-count'),
+                cartItems: document.getElementById('cart-items'),
+                emptyCartMessage: document.getElementById('empty-cart-message'),
+                cartTotalAmount: document.getElementById('cart-total-amount'),
+                
+                // Notification
+                notification: document.getElementById('notification'),
+                notificationMessage: document.getElementById('notification-message'),
+                notificationIcon: document.getElementById('notification-icon'),
+                
+                // Games Grid
+                gamesGrid: document.getElementById('games-grid')
+            };
+
+            // Game Data
+            const games = [
+                {
+                    id: 1,
+                    title: "Cyberpunk 2077",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
+                    category: "action",
+                    price: 59.99,
+                    discountPrice: 39.99,
+                    isFeatured: true
+                },
+                {
+                    id: 2,
+                    title: "Elden Ring",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg",
+                    category: "rpg",
+                    price: 59.99,
+                    discountPrice: 49.99,
+                    isFeatured: false
+                },
+                {
+                    id: 3,
+                    title: "Stardew Valley",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg",
+                    category: "rpg",
+                    price: 14.99,
+                    discountPrice: null,
+                    isFeatured: true
+                },
+                {
+                    id: 4,
+                    title: "Apex Legends",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg",
+                    category: "action",
+                    price: 0,
+                    discountPrice: null,
+                    isFeatured: false
+                },
+                {
+                    id: 5,
+                    title: "Baldur's Gate 3",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1086940/header.jpg",
+                    category: "rpg",
+                    price: 59.99,
+                    discountPrice: null,
+                    isFeatured: true
+                },
+                {
+                    id: 6,
+                    title: "Hades",
+                    image: "https://cdn.akamai.steamstatic.com/steam/apps/1145360/header.jpg",
+                    category: "action",
+                    price: 24.99,
+                    discountPrice: 19.99,
+                    isFeatured: false
+                }
+            ];
+
+            // App State
+            const state = {
+                cart: [],
+                user: null,
+                wishlist: []
+            };
+
+            // Initialize the app
+            function init() {
+                loadGames();
+                setupEventListeners();
+                updateCartCount();
+            }
+
+            // Load games into the grid
+            function loadGames() {
+                elements.gamesGrid.innerHTML = '';
+                
+                games.forEach(game => {
+                    const gameCard = document.createElement('div');
+                    gameCard.className = 'game-card';
+                    gameCard.dataset.id = game.id;
+                    gameCard.dataset.category = game.category;
+                    
+                    let badge = '';
+                    if (game.isFeatured) {
+                        badge = '<
