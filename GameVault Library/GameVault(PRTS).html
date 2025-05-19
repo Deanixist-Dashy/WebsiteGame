@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Game Vault | Game Library Website using Html Css And Javascript</title>
+</head>
+
+<body>
+    <header>
+        <aside>
+            <h1>GameVault <i class="bi bi-safe2"></i></h1>
+            <button>GameVault Just Games</button>
+            <ul>
+                <li><a href="#"><i class="bi bi-archive-fill"></i> Browse</a></li>
+                <li><a href="#"><i class="bi bi-people-fill"></i> Friends</a></li>
+                <li><a href="#"><i class="bi bi-controller"></i> My Games</a></li>
+                <li><a href="#"><i class="bi bi-bookmark-check-fill"></i> Store</a></li>
+            </ul>
+            <!-- all card data changed -->
+        </aside>
+        <article>
+            <nav>
+                <button>My Games</button>
+                <div class="search">
+                    <input type="text" placeholder="Search">
+                    <i class="bi bi-search"></i>
+                </div>
+                <div class="right_bx">
+                    <i class="bi bi-moon-fill" id="day_night"></i>
+                    <i class="bi bi-brightness-high-fill" id="day_night"></i>
+                     <i class="bi bi-wifi" id="wifi"></i>
+                     <i class="bi bi-gear-fill"></i>
+                     <button id="active_battery"></button><class="active_battery"><i class="bi bi-battery-half" id="battery_icon"></i> <span id="battery_level">99%</span></button>
+                     <div class="user_data">
+                        <h2>Crimscion</h2>
+                        <h1>PRTS</h1>
+                        <i class="bi bi-caret-down-fill"></i>
+                        <div class="card">
+                            <img src="images.jpg" alt="">
+                            <h2>Crimscion</h2>
+                            <p>Its a Prototype, so its not final yet. More updates until further notice. heh.</p>
+                        </div>
+                     </div>
+                </div>
+            </nav>
+            <!-- Game Box Start -->
+             <div class="game1">
+                <div class="btns">
+                    <i class="bi bi-caret-left-fill" id="game_bx_1_left_btn"></i>
+                    <i class="bi bi-caret-right-fill" id="game_bx_1_right_btn"></i>
+                </div>
+                <h3> Most Played Games</h3>
+                <div class="game_bx" id="game_bx_1">
+                    <div class="card">
+                        <img src="images_pgr.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>Punishing Gray Raven</h4>
+                                <p>Kuro Games</p>
+                            </div>
+                            <h5>7.1Hrs.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_wuwa.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>Wuthering Waves</h4>
+                                <p>Kuro Games</p>
+                            </div>
+                            <h5>2.1Hrs.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_fh4.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>Forza Horizon 4</h4>
+                                <p>Playground Games</p>
+                            </div>
+                            <h5>58min.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_f1_24.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>F1 24</h4>
+                                <p>EA Sports</p>
+                            </div>
+                            <h5>91Hrs.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_le_mans_ultimate.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>Le Mans Ultimate</h4>
+                                <p>Dutch video games</p>
+                            </div>
+                            <h5>281Hrs.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_repo.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>R.E.P.O</h4>
+                                <p>Semiwork Studios</p>
+                            </div>
+                            <h5>2Hrs.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_mad_max.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>Mad Max</h4>
+                                <p>Avalanche Studios Group</p>
+                            </div>
+                            <h5>42Hrs.</h5>
+                        </div>
+                </div>
+                <div class="card">
+                        <img src="images_asseto_corsa.jpg" alt="">
+                        <div class="content">
+                            <div class="left">
+                                <h4>Asseto Corsa</h4>
+                                <p>Kunos Simulazioni</p>
+                            </div>
+                            <h5>114Hrs.</h5>
+                        </div>
+                    </div>
+                    <!-- all card data changed -->
+                </div>
+             </div>
+             <!-- game box 2 start -->
+             <div class="game2">
+                <h3>All Games</h3>
+                <div class="games_bx">
+                    <div class="card">
+                        <img src="images_ac.jpg" alt="">
+                        <div class="content">
+                            <h6>Asseto Corsa</h6>
+                            <p>114Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_ds1r.jpg" alt="">
+                        <div class="content">
+                            <h6>Dark Souls 1: Remastered</h6>
+                            <p>2.6Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_ds3.jpg" alt="">
+                        <div class="content">
+                            <h6>Dark Souls 3</h6>
+                            <p>2.3Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_dmc5.jpg" alt="">
+                        <div class="content">
+                            <h6>Devil May Cry 5</h6>
+                            <p>1.4Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_f124(2).jpg" alt="">
+                        <div class="content">
+                            <h6>F1 24</h6>
+                            <p>91Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="image_fnaf3.jpg" alt="">
+                        <div class="content">
+                        <h6>Five Nights at Freddys 3</h6>
+                        <p>36min.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_fh4(2).jpg" alt="">
+                        <div class="conetent">
+                            <h6>Forza Horizon 4</h6>
+                            <p>58min.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_hi3rd.jpg" alt="">
+                        <div class="content">
+                            <h6>Honkai Impact 3rd</h6>
+                            <p>1.1Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_lmu.jpg" alt="">
+                        <div class="content">
+                            <h6>Le Mans Ultimate</h6>
+                            <p>281Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_mm(2).jpg" alt="">
+                        <div class="content">
+                            <h6>Mad Max</h6>
+                            <p>42Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_mhworld.jpg" alt="">
+                        <div class="content">
+                            <h6>Monster Hunter Wild</h6>
+                            <p>8Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_nfsheat.jpg" alt="">
+                        <div class="content">
+                            <h6>Need for Speed: Heat</h6>
+                            <p>4.1Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_nfspayback.jpg" alt="">
+                        <div class="content">
+                            <h6>Need for Speed: Payback</h6>
+                            <p>4.2Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_nfsunbound.jpg" alt="">
+                        <div class="content">
+                            <h6>Need for Speed: Unbound</h6>
+                            <p>4.3Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_nier.jpg" alt="">
+                        <div class="content">
+                            <h6>Nier Automata</h6>
+                            <p>6Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_persona5.jpg" alt="">
+                        <div class="content">
+                            <h6>Persona 5 Royal</h6>
+                            <p>49min.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_pgr(2).jpg" alt="">
+                        <div class="content">
+                            <h6>Punishing Gray Raven</h6>
+                            <p>7.1Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_re.po.jpg" alt="">
+                        <div class="content">
+                            <h6>R.E.P.O</h6>
+                            <p>2Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_sekiro.png" alt="">
+                        <div class="content">
+                            <h6>Sekiro: Shadows Die Twice</h6>
+                            <p>5.3Hrs.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_torque_drift.jpg" alt="">
+                        <div class="content">
+                            <h6>Torque Drift</h6>
+                            <p>32min.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images_wutheringwa.png" alt="">
+                        <div class="content">
+                            <h6>Wuthering Waves</h6>
+                            <p>2.1Hrs.</p>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </article>
+    </header>
+    <script src="app.js"></script>
+</body>
+
+</html>
